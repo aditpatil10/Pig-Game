@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
 .clearfix::after {
     content: "";
     display: table;
@@ -27,13 +33,19 @@ body{
     height: 100vh;
     color: #555;
 }
-.player-1-panel,
 .player-2-panel{
     height: 600px;
     float: left;
     width:50%;
+    padding: 100px;
 }
 
+.player-1-panel{
+    height: 600px;
+    float: left;
+    width:50%;
+    padding: 100px;
+}
 .player-name{
     font-size: 40px;
     text-align: center;
@@ -44,3 +56,84 @@ body{
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
+.player-score{
+    font-size: 80px;
+    text-align: center;
+    color: #EB4D4D;
+    font-weight: 100;
+    margin-bottom: 130px;
+}
+.active { background-color: #f7f7f7; }
+.active .player-name { font-weight: 300; }
+
+.active .player-name::after {
+    content: "\2022";
+    font-size: 47px;
+    color: #EB4D4D;
+    top: -7px;
+    right: 10px;
+}
+
+.player-current-label{
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #222;
+}
+.player-current-score{
+    font-size: 30px;
+}
+.player-current-box{
+    width: 40%;
+    color: #fff;
+    background-color: #EB4D4D;
+    text-align: center;
+    margin: 0 auto;
+    padding: 12px;
+    }
+button {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    background: none;
+    border: none;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+button:hover { font-weight: 600; }
+button:hover i { margin-right: 20px; }
+
+button:focus {
+    outline: none;
+}
+
+i {
+    color: #EB4D4D;
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 32px;
+    line-height: 1;
+    vertical-align: text-top;
+    margin-top: -4px;
+    transition: margin 0.3s;
+}
+.btn-new { top: 45px;}
+.btn-roll { top: 403px;}
+.btn-hold { top: 467px;}
+
+.dice {
+    position: absolute;
+    left: 50%;
+    top: 178px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+.winner { background-color: #f7f7f7; }
+.winner .player-name { font-weight: 300; color: #EB4D4D; }
