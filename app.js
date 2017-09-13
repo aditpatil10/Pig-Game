@@ -15,13 +15,17 @@ var scores, roundScore, activePlayer;
 
 scores = [0,0]
 roundScore = 0 ;
-activePlayer = 2;
+activePlayer = 1;
 
 
 
 //document.querySelector('#current-' + activePlayer).textContent = dice;
 
 document.querySelector('.dice').style.display = 'none';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('score-2').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+document.getElementById('current-2').textContent = '0';
 
 document.querySelector('.btn-roll').addEventListener('click',function(){
     
@@ -30,5 +34,21 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
     var diceDOM = document.querySelector('.dice');
    diceDOM.style.display = 'block';
    diceDOM.src = 'dice-' + dice + '.png'; 
+    
+    if(dice !== 1) {
+        roundScore += dice;
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    }
+    else{
+        activePlayer === 1 ? activePlayer = 2 : activePlayer = 1;
+        roundScore = 0;
+        document.getElementById('current-1').textContent = '0';
+        document.getElementById('current-2').textContent = '0';
+        
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        document.querySelector('.player-2-panel').classList.toggle('active');
+        document.querySelector('.dice').style.display = 'none';
+        
+    }
    
 })
