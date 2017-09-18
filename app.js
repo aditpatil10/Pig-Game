@@ -13,7 +13,7 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0,0]
+scores = [0,0,0]
 roundScore = 0 ;
 activePlayer = 1;
 
@@ -40,7 +40,33 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     }
     else{
-        activePlayer === 1 ? activePlayer = 2 : activePlayer = 1;
+        nextPlayer();
+        
+    }
+   
+});
+
+ document.querySelector('.btn-hold').addEventListener('click',function(){
+     scores[activePlayer] += roundScore;
+     document.querySelector('#score-' + activePlayer).textContent=scores[activePlayer];
+     
+     if(scores[activePlayer] >= 10){
+         document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+         document.querySelector('.dice').style.display = 'none';
+         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+         document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+     }
+     else{
+         nextPlayer();
+     }
+     
+     
+     
+
+ })
+
+function nextPlayer(){
+    activePlayer === 1 ? activePlayer = 2 : activePlayer = 1;
         roundScore = 0;
         document.getElementById('current-1').textContent = '0';
         document.getElementById('current-2').textContent = '0';
@@ -48,7 +74,4 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
         document.querySelector('.player-1-panel').classList.toggle('active');
         document.querySelector('.player-2-panel').classList.toggle('active');
         document.querySelector('.dice').style.display = 'none';
-        
-    }
-   
-})
+}
