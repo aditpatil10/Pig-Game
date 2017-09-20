@@ -11,14 +11,14 @@ GAME RULES:
 
 
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer,gamePlaying;
 init();
 
 
 
 document.querySelector('.btn-roll').addEventListener('click',function(){
-    
-   var dice = Math.floor(Math.random() * 6) + 1;
+   if(gamePlaying){
+       var dice = Math.floor(Math.random() * 6) + 1;
    
     var diceDOM = document.querySelector('.dice');
    diceDOM.style.display = 'block';
@@ -32,22 +32,28 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
         nextPlayer();
         
     }
+   } 
+   
    
 });
 
  document.querySelector('.btn-hold').addEventListener('click',function(){
-     scores[activePlayer] += roundScore;
+     if(gamePlaying){
+          scores[activePlayer] += roundScore;
      document.querySelector('#score-' + activePlayer).textContent=scores[activePlayer];
      
-     if(scores[activePlayer] >= 10){
+     if(scores[activePlayer] >= 100){
          document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
          document.querySelector('.dice').style.display = 'none';
          document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
          document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+         gamePlaying = false;
      }
      else{
          nextPlayer();
      }
+     }
+    
      
      
      
@@ -71,7 +77,7 @@ function init(){
 scores = [0,0,0]
 roundScore = 0 ;
 activePlayer = 1;
-
+gamePlaying = true;
 
 
 //document.querySelector('#current-' + activePlayer).textContent = dice;
@@ -88,4 +94,5 @@ document.getElementById('current-2').textContent = '0';
     document.querySelector('.player-2-panel').classList.remove('winner');
     document.querySelector('.player-2-panel').classList.remove('active');
     document.querySelector('.player-1-panel').classList.add('active');
+    
 }
